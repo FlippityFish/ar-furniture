@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Furniture AR Viewer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A-186 3D Viewer</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     body {
       margin: 0;
-      background: #f0f0f0;
+      background-color: #000;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       height: 100vh;
     }
-
     model-viewer {
       width: 100%;
+      max-width: 800px;
       height: 100%;
-      max-width: 600px;
-      max-height: 80vh;
+      max-height: 600px;
     }
   </style>
 </head>
 <body>
   <model-viewer
-    src="assets/58.glb"
-    ar
-    ar-modes="scene-viewer webxr quick-look"
-    camera-controls
+    src="assets/A-186.glb"
+    alt="3D model A-186"
     auto-rotate
-    autoplay
-    alt="58.glb Furniture Model">
+    camera-controls
+    ar
+    ar-modes="webxr scene-viewer quick-look"
+    shadow-intensity="1"
+    exposure="1"
+    environment-image="neutral"
+    background-color="#ffffff">
   </model-viewer>
 </body>
 </html>
