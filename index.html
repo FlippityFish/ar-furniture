@@ -2,55 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>View Table in AR</title>
+  <title>Furniture AR Gallery</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 40px; }
+    body { font-family: sans-serif; text-align: center; padding: 20px; }
+    .item { margin-bottom: 60px; }
     .ar-button {
       display: inline-block;
-      padding: 15px 30px;
-      margin-bottom: 30px;
+      padding: 10px 24px;
       background-color: #007aff;
-      color: rgb(59, 52, 52);
-      font-size: 18px;
-      border-radius: 10px;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
       text-decoration: none;
+      margin-top: 10px;
     }
-    model-viewer { width: 100%; height: 70vh; }
+    model-viewer {
+      width: 100%;
+      max-width: 400px;
+      height: 300px;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
 
-  <h1>AR Table Viewer</h1>
-  <p>Tap below to view the table in AR:</p>
-  <a id="ar-link" class="ar-button" href="#">View Table in AR</a>
+  <h1>Furniture AR Gallery</h1>
 
-  <div id="fallback" style="display:none;">
-    <p>Your device doesn't support AR, but you can preview the table in 3D below:</p>
-    <model-viewer
-      src="A-186.glb"
-      alt="3D table model"
-      auto-rotate
-      camera-controls
-      shadow-intensity="1">
-    </model-viewer>
+  <!-- A-186 -->
+  <div class="item">
+    <h2>Model A-186</h2>
+    <a class="ar-button" href="#" onclick="launchAR('A-186')">View in AR</a>
+    <model-viewer src="A-186.glb" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+  </div>
+
+  <!-- A-58 -->
+  <div class="item">
+    <h2>Model A-58</h2>
+    <a class="ar-button" href="#" onclick="launchAR('A-58')">View in AR</a>
+    <model-viewer src="A-58.glb" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
   </div>
 
   <script>
-    const arLink = document.getElementById("ar-link");
-    const fallback = document.getElementById("fallback");
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
     const baseURL = "https://flippityfish.github.io/ar-furniture";
 
-    if (/android/i.test(userAgent)) {
-      arLink.href = `intent://arvr.google.com/scene-viewer/1.0?file=${baseURL}/A-186.glb&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=${baseURL}/index.html;end;`;
-    } else if (/iPad|iPhone|iPod/.test(userAgent)) {
-      arLink.href = `${baseURL}/A-186.usdz`;
-      arLink.rel = "ar";
-    } else {
-      arLink.style.display = "none";
-      fallback.style.display = "block";
+    function launchAR(modelName) {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      if (/android/i.test(userAgent)) {
+        window.location.href =
+          `intent://arvr.google.com/scene-viewer/1.0?file=${baseURL}/${modelName}.glb&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=${baseURL}/index.html;end;`;
+      } else if (/iPad|iPhone|iPod/.test(userAgent)) {
+        window.location.href = `${baseURL}/${modelName}.usdz`;
+      } else {
+        alert("AR is only supported on mobile. Use the 3D preview below.");
+      }
     }
   </script>
 
