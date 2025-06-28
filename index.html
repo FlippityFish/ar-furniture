@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>View Shelf in AR</title>
+  <title>View Table in AR</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body { font-family: sans-serif; text-align: center; padding: 50px; }
@@ -19,23 +19,24 @@
 </head>
 <body>
 
-  <h1>Wall Shelf AR Viewer</h1>
-  <p>Click below to view the shelf in AR on your device:</p>
-  <a id="ar-link" class="ar-button" href="#">View in AR</a>
+  <h1>AR Table Viewer</h1>
+  <p>Tap below to view the table in Augmented Reality:</p>
+  <a id="ar-link" class="ar-button" href="#">View Table in AR</a>
 
   <script>
     const arLink = document.getElementById("ar-link");
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    
-    const repoURL = "https://<your-username>.github.io/<repo-name>"; // Replace these
+
+    const baseURL = "https://flippityfish.github.io/ar-furniture";
 
     if (/android/i.test(userAgent)) {
-      arLink.href = `intent://arvr.google.com/scene-viewer/1.0?file=${repoURL}/A-186.glb&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=${repoURL}/fallback.html;end;`;
-    } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
-      arLink.href = `${repoURL}/A-186.usdz`;
+      arLink.href =
+        `intent://arvr.google.com/scene-viewer/1.0?file=${baseURL}/A-186.glb&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=${baseURL}/fallback.html;end;`;
+    } else if (/iPhone|iPad|iPod/.test(userAgent)) {
+      arLink.href = `${baseURL}/A-186.usdz`;
       arLink.rel = "ar";
     } else {
-      arLink.href = `${repoURL}/fallback.html`;
+      arLink.href = `${baseURL}/fallback.html`;
     }
   </script>
 
