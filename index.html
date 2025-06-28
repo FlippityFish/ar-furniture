@@ -29,7 +29,7 @@
   <div id="fallback" style="display:none;">
     <p>Your device doesn't support AR, but you can preview the table in 3D below:</p>
     <model-viewer
-      src="A-186_repacked.glb"
+      src="A-186.glb"
       alt="3D table model"
       auto-rotate
       camera-controls
@@ -44,14 +44,11 @@
     const baseURL = "https://flippityfish.github.io/ar-furniture";
 
     if (/android/i.test(userAgent)) {
-      // Android → Google Scene Viewer
-      arLink.href = `intent://arvr.google.com/scene-viewer/1.0?file=${baseURL}/A-186_repacked.glb&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=${baseURL}/fallback.html;end;`;
+      arLink.href = `intent://arvr.google.com/scene-viewer/1.0?file=${baseURL}/A-186.glb&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=${baseURL}/index.html;end;`;
     } else if (/iPad|iPhone|iPod/.test(userAgent)) {
-      // iOS → Apple Quick Look
       arLink.href = `${baseURL}/A-186.usdz`;
       arLink.rel = "ar";
     } else {
-      // Other → Show 3D fallback
       arLink.style.display = "none";
       fallback.style.display = "block";
     }
