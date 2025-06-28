@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shelf Preview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 30px; }
+    model-viewer { width: 100%; height: 70vh; }
+  </style>
+</head>
+<body>
+
+  <h1>Shelf 3D Preview</h1>
+  <p>Your device doesn't support AR, but you can still view the shelf in 3D below.</p>
+
+  <model-viewer 
+    src="A-186.glb" 
+    alt="Wall-mounted shelf"
+    camera-controls 
+    auto-rotate 
+    shadow-intensity="1"
+    ar>
+  </model-viewer>
+
+</body>
+</html>
